@@ -15,6 +15,14 @@ export function Sidebar() {
   const deleteConversation = useChatStore((state) => state.deleteConversation);
   const newConversation = useChatStore((state) => state.newConversation);
 
+  // Helper function to safely clean up linebreaks and enforce a maximum length threshold
+  const formatPreview = (text: string | null | undefined) => {
+    if (!text) return "No messages yet";
+    // Replace all line breaks/newlines with a single space character
+    const singleLine = text.replace(/\s+/g, " ");
+    return singleLine.length > 35 ? `${singleLine.substring(0, 35)}...` : singleLine;
+  };
+
   return (
     <aside className="hidden h-screen w-80 shrink-0 border-r bg-card/70 md:flex md:flex-col">
       <div className="flex items-center gap-2 border-b p-3">
@@ -34,7 +42,7 @@ export function Sidebar() {
             <div
               key={conversation.id}
               className={cn(
-                "group flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-secondary",
+                "group flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm hover:bg-secondary",
                 activeConversationId === conversation.id && "bg-secondary"
               )}
             >
@@ -43,12 +51,13 @@ export function Sidebar() {
                 onClick={() => void selectConversation(conversation.id)}
               >
                 <div className="truncate font-medium">{conversation.title}</div>
-                <div className="truncate text-xs text-muted-foreground">
-                  {conversation.last_message_preview ?? "No messages yet"}
+                {/* Added whitespace-nowrap and formatPreview block */}
+                <div className="truncate text-xs text-muted-foreground whitespace-nowrap">
+                  {formatPreview(conversation.last_message_preview)}
                 </div>
               </button>
               <button
-                className="rounded p-1 text-muted-foreground opacity-0 hover:bg-destructive hover:text-white group-hover:opacity-100"
+                className="shrink-0 rounded p-1 text-muted-foreground hover:bg-destructive hover:text-white"
                 onClick={() => void deleteConversation(conversation.id)}
                 aria-label="Delete conversation"
               >
