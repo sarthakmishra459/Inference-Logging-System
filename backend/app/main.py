@@ -44,6 +44,16 @@ app.add_middleware(
 )
 
 
+# Added root route for quick browser testing
+@app.get("/")
+async def root() -> dict:
+    return {
+        "message": "Inference Logging System API is running",
+        "environment": settings.app_env,
+        "docs_url": "/docs"
+    }
+
+
 @app.get("/health")
 async def health() -> dict:
     return {"status": "ok", "timestamp": utc_now()}
