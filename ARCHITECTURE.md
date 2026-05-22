@@ -1,4 +1,5 @@
 # Architecture
+<img width="2816" height="1536" alt="Architecture_Image" src="https://github.com/user-attachments/assets/c1328933-7062-409f-b03d-5529fcc0c69a" />
 
 ## Request Flow
 
