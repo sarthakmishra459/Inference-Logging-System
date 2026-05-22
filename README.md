@@ -2,6 +2,13 @@
 
 A production-oriented lightweight LLM inference logging and ingestion system with a streaming chatbot, reusable Gemini SDK wrapper, MongoDB persistence, and analytics dashboard.
 
+## Live Deployment
+
+- Frontend: https://inference-logging-system.vercel.app
+- Backend API: https://inference-logging-system.onrender.com
+- Backend health check: https://inference-logging-system.onrender.com/health
+- Backend docs: https://inference-logging-system.onrender.com/docs
+
 ## Stack
 
 - Frontend: Next.js 15 App Router, TypeScript, Tailwind CSS, shadcn-style UI primitives, Zustand, Recharts, streaming readable streams
@@ -138,19 +145,31 @@ Indexes: `(conversation_id, created_at)`, `created_at desc`.
 
 Indexes: `created_at desc`, `(provider, model)`, `(conversation_id, created_at)`, `status`.
 
-## Deployment
+### Setup Enviornment Variables
 
-Frontend on Vercel:
+```env
+APP_ENV=production
+API_CORS_ORIGINS=https://inference-logging-system.vercel.app
+API_CORS_ORIGIN_REGEX=https://.*\.vercel\.app
+MONGODB_URI=mongodb+srv://USER:PASSWORD@cluster.mongodb.net
+MONGODB_DB=inference_logging
+GEMINI_API_KEY=your_gemini_key
+GEMINI_MODEL=gemini-2.5-flash
+LLM_REQUEST_TIMEOUT_SECONDS=45
+INGESTION_RETRIES=2
+```
 
-- Root directory: `frontend`
-- Build command: `npm run build`
-- Environment: `NEXT_PUBLIC_API_BASE_URL=https://your-backend.example.com`
+The deployed backend is available at:
 
-Backend on Render/Railway:
+```text
+https://inference-logging-system.onrender.com
+```
 
-- Root directory: `backend`
-- Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- Environment: `MONGODB_URI`, `MONGODB_DB`, `GEMINI_API_KEY`, `API_CORS_ORIGINS`
+The deployed frontend is available at:
+
+```text
+https://inference-logging-system.vercel.app
+```
 
 MongoDB Atlas:
 
