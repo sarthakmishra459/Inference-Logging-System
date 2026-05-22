@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useChatStore } from "@/store/chat-store";
 import { cn } from "@/lib/utils";
+import { formatPreview } from "@/utils/formatter";
 
 export function Sidebar() {
   const conversations = useChatStore((state) => state.conversations);
@@ -16,12 +17,7 @@ export function Sidebar() {
   const newConversation = useChatStore((state) => state.newConversation);
 
   // Helper function to safely clean up linebreaks and enforce a maximum length threshold
-  const formatPreview = (text: string | null | undefined) => {
-    if (!text) return "No messages yet";
-    // Replace all line breaks/newlines with a single space character
-    const singleLine = text.replace(/\s+/g, " ");
-    return singleLine.length > 35 ? `${singleLine.substring(0, 35)}...` : singleLine;
-  };
+
 
   return (
     <aside className="hidden h-screen w-80 shrink-0 border-r bg-card/70 md:flex md:flex-col">

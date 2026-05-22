@@ -24,3 +24,21 @@ export type DashboardMetrics = {
   provider_usage: { name: string; value: number }[];
   model_usage: { name: string; value: number }[];
 };
+
+export type ChatState = {
+  conversations: Conversation[];
+  messages: Message[];
+  activeConversationId: string | null;
+  isStreaming: boolean;
+  error: string | null;
+  abortController: AbortController | null;
+  loadConversations: () => Promise<void>;
+  selectConversation: (id: string) => Promise<void>;
+  newConversation: () => void;
+  deleteConversation: (id: string) => Promise<void>;
+  sendMessage: (content: string) => Promise<void>;
+  cancelStream: () => void;
+};
+
+export type MongoConversation = Omit<Conversation, "id"> & { _id?: string; id?: string };
+export type MongoMessage = Omit<Message, "id"> & { _id?: string; id?: string };

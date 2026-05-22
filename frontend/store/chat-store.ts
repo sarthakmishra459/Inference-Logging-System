@@ -3,22 +3,9 @@
 import { create } from "zustand";
 
 import { api, streamChat } from "@/lib/api";
-import type { Conversation, Message } from "@/lib/types";
+import type { ChatState, Conversation, Message } from "@/lib/types";
 
-type ChatState = {
-  conversations: Conversation[];
-  messages: Message[];
-  activeConversationId: string | null;
-  isStreaming: boolean;
-  error: string | null;
-  abortController: AbortController | null;
-  loadConversations: () => Promise<void>;
-  selectConversation: (id: string) => Promise<void>;
-  newConversation: () => void;
-  deleteConversation: (id: string) => Promise<void>;
-  sendMessage: (content: string) => Promise<void>;
-  cancelStream: () => void;
-};
+
 
 const now = () => new Date().toISOString();
 

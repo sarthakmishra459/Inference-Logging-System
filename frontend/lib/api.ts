@@ -1,9 +1,8 @@
-import type { Conversation, DashboardMetrics, Message } from "@/lib/types";
+import type { Conversation, DashboardMetrics, Message, MongoConversation, MongoMessage } from "@/lib/types";
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
 
-type MongoConversation = Omit<Conversation, "id"> & { _id?: string; id?: string };
-type MongoMessage = Omit<Message, "id"> & { _id?: string; id?: string };
+
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
