@@ -19,7 +19,7 @@ export function MessageList() {
 
   if (messages.length === 0) {
     return (
-      <div className="flex flex-1 items-center justify-center px-6 text-center">
+      <div className="flex min-h-0 flex-1 items-center justify-center px-6 text-center">
         <div className="max-w-xl">
           <h1 className="text-3xl font-semibold tracking-normal">Inference Logging System</h1>
           <p className="mt-4 text-sm leading-6 text-muted-foreground">
@@ -32,8 +32,8 @@ export function MessageList() {
   }
 
   return (
-    <ScrollArea className="flex-1">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8">
+    <ScrollArea className="min-h-0 flex-1">
+      <div className="mx-auto flex w-full md:max-w-full max-w-3xl flex-col gap-6 px-4 py-8">
         {messages.map((message, index) => {
           const isUser = message.role === "user";
           const isLastStreaming = isStreaming && index === messages.length - 1 && !message.content;

@@ -21,8 +21,8 @@ export function ChatLayout() {
   return (
     <main className="flex h-screen bg-background text-foreground">
       <Sidebar />
-      <section className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 items-center justify-between border-b px-4 md:hidden">
+      <section className="flex min-h-0 min-w-0 flex-1 flex-col">
+        <header className="flex h-14 shrink-0 items-center justify-between border-b px-4 md:hidden">
           <Button variant="ghost" size="icon" aria-label="Menu">
             <Menu size={18} />
           </Button>
