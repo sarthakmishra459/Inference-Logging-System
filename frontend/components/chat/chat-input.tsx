@@ -31,7 +31,7 @@ export function ChatInput() {
   return (
     <form
       onSubmit={submit}
-      className="shrink-0 border-t bg-background/95 px-3 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] sm:px-4"
+      className="relative z-20 shrink-0 border-t bg-background/95 px-3 py-2 pb-[calc(2.25rem+env(safe-area-inset-bottom))] sm:px-4 sm:pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
     >
       <div className="mx-auto flex items-end gap-2">
         <Textarea
